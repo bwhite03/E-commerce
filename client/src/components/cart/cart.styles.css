@@ -1,0 +1,15 @@
+.css-twia2z-MuiPaper-root-MuiDialog-paper {
+  margin: 0 !important;
+}
+.css-hz1bth-MuiDialog-container {
+  justify-content: flex-end !important;
+}
+
+.MuiDialog-container {
+  align-items: stretch !important;
+}
+
+.MuiDialog-paper {
+  min-height: 100vh !important;
+  max-height: 100vh !important;
+}
