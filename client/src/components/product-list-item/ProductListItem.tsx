@@ -10,6 +10,7 @@ import { addToCart, removeCartItem } from "../../store/actions/userActions";
 function ProductListItem(props: any) {
   const handleAddToCart = (event: any) => {
     event.preventDefault();
+
     const cartItem = {
       userId: props.userInfo.id,
       productId: props.product.id,

@@ -8,7 +8,7 @@ import {
   UPDATE_CART_ITEM_QUANTITY,
 } from "../actions/userActions";
 const userDefaultState = {
-  userInfo: null,
+  userInfo: undefined,
   cart: [],
 };
 
@@ -17,7 +17,7 @@ const userReducer = (state = userDefaultState, action: any) => {
     case FETCH_USER_INFO:
       return { ...state, userInfo: action.payload };
     case LOGOUT:
-      return { ...state, userInfo: action.payload };
+      return { ...state, userInfo: action.payload, cart: [] };
     case FETCH_CART_ITEMS:
       return { ...state, cart: action.payload };
     case ADD_TO_CART:

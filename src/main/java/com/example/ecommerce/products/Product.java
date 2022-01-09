@@ -15,6 +15,8 @@ public class Product {
     private String image;
     private String type;
     private String brand;
+    private String details;
+
 
 
     public Integer getId() {
@@ -64,4 +66,13 @@ public class Product {
     public void setBrand(String brand) {
         this.brand = brand;
     }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
 }
+

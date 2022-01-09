@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import {
   fetchProduct,
   fetchProductImages,
+  fetchReviews,
 } from "../../store/actions/productActions";
 import { addToCart, removeCartItem } from "../../store/actions/userActions";
 import Box from "@mui/material/Box";
@@ -25,8 +26,9 @@ function Product(props: any) {
   useEffect(() => {
     props.fetchProduct(id);
     props.fetchProductImages(id);
-  }, []);
-  console.log(props.product.id);
+    props.fetchReviews(id);
+  }, [id]);
+
   const handleAddToCart = (event: any) => {
     const cartItem = {
       userId: props.userInfo.id,
@@ -197,4 +199,5 @@ export default connect(mapStateToProps, {
   addToCart,
   removeCartItem,
   fetchProductImages,
+  fetchReviews,
 })(Product);

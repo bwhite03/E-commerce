@@ -14,6 +14,7 @@ export const fetchUserInfo = (token: string) => {
       type: FETCH_USER_INFO,
       payload: response.data,
     });
+    return response;
   };
 };
 
@@ -22,7 +23,7 @@ export const logout = () => {
     localStorage.removeItem("token");
     dispatch({
       type: LOGOUT,
-      payload: null,
+      payload: undefined,
     });
   };
 };
@@ -44,11 +45,13 @@ export const addToCart = (cartItem: any, product: any) => {
   product.quantity = 1;
 
   return async (dispatch: any) => {
-    const response = await axios.post(`/addToCart`, {
-      userId: cartItem.userId,
-      productId: cartItem.productId,
-      quantity: 1,
-    });
+    if (cartItem !== 0) {
+      const response = await axios.post(`/addToCart`, {
+        userId: cartItem.userId,
+        productId: cartItem.productId,
+        quantity: 1,
+      });
+    }
 
     dispatch({
       type: ADD_TO_CART,

@@ -1,14 +1,17 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchUserInfo } from "../../store/actions/userActions";
+import { fetchUserInfo, fetchCartItems } from "../../store/actions/userActions";
 
 function HomePage(props: any) {
   useEffect(() => {
-    console.log(props.cart);
-    let token = localStorage.getItem("token");
-    if (token) {
-      props.fetchUserInfo(token);
+    async function fetchData() {
+      let token = localStorage.getItem("token");
+      if (token) {
+        let res = await props.fetchUserInfo(token);
+        props.fetchCartItems(res.data.id);
+      }
     }
+    fetchData();
   }, []);
 
   return (
@@ -25,4 +28,6 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchUserInfo })(HomePage);
+export default connect(mapStateToProps, { fetchUserInfo, fetchCartItems })(
+  HomePage
+);

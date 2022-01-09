@@ -27,7 +27,7 @@ function ProductsList(props: any) {
         <Grid container spacing={2} sx={{ p: 2 }}>
           {props.products.content.map((product: any) => (
             <Grid item xs={3} key={product.id} sx={{ p: 2 }}>
-              <ProductListItem product={product} />
+              <ProductListItem product={product} key={product.id} />
             </Grid>
           ))}
         </Grid>
@@ -38,7 +38,7 @@ function ProductsList(props: any) {
         <CircularProgress />
       ) : (
         <Pagination
-          count={Math.floor(props.products.content.length + 8 - 1) / 8}
+          count={Math.ceil(props.products.totalElements / 8)}
           size={"large"}
           page={page}
           onChange={handleChange}

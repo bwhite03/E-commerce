@@ -5,6 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static com.example.ecommerce.products.ProductSpecs.*;
 
 @CrossOrigin
@@ -26,6 +28,11 @@ public class ProductController {
     @GetMapping("/product/{id}")
     public Product getProduct(@PathVariable int id) {
         return ProductRepository.findById(id);
+    }
+
+    @GetMapping("/similarProducts/{type}/{id}")
+    public List<Product> fetchSimilarProducts(@PathVariable String type, @PathVariable int id) {
+        return ProductRepository.findByType(type, id);
     }
 
     @GetMapping("/products/filter")
