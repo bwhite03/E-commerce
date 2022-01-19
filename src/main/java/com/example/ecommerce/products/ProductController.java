@@ -15,11 +15,6 @@ public class ProductController {
     @Autowired
     private ProductRepository ProductRepository;
 
-    @RequestMapping("/")
-    public String getGreeting() {
-        return "Hello World, it's me!";
-    }
-
     @GetMapping("/products")
     public Page<Product> allProducts(Pageable pageable) {
         return ProductRepository.findAll(pageable);
