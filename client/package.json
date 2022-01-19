@@ -38,7 +38,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "move-build": "mkdir -p ../main/resources/static && mv build/* ../main/resources/static/",
+    "clean-old-build": "rm -rf ../main/resources/static/* ",
+    "clean-new-build": "rm -rf build"
   },
   "proxy": "https://guitar--store.herokuapp.com",
   "eslintConfig": {
