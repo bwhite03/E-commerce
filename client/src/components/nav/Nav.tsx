@@ -48,17 +48,8 @@ function Nav(props: any) {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to="/">Guitar World</Link>
+            <Link to="/">Guitar Store</Link>
           </Typography>
           <Button color="inherit">
             <Link to="/products">Products</Link>
@@ -90,8 +81,8 @@ function Nav(props: any) {
                   "aria-labelledby": "basic-button",
                 }}
               >
-                <MenuItem onClick={logout}>
-                  <Link to="/signin" style={{ color: "#000000DE" }}>
+                <MenuItem onClick={handleCloseMenu}>
+                  <Link to="/account" style={{ color: "#000000DE" }}>
                     Account
                   </Link>
                 </MenuItem>

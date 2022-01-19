@@ -18,6 +18,10 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
 
     Page<Product> findAll(Specification<Product> spec, Pageable pageable);
 
+    @Query(value = "SELECT * from product ORDER BY rating DESC LIMIT 6", nativeQuery = true)
+    List<Product> findByRating();
 
+    @Query(value = "UPDATE product SET rating ?1 WHERE id = ?2", nativeQuery = true)
+    Product updateRating(int rating, int id);
 
 }

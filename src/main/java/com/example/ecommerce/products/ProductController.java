@@ -30,6 +30,21 @@ public class ProductController {
         return ProductRepository.findById(id);
     }
 
+    @GetMapping("/product/topRated")
+    public List<Product> getTopRated() {
+        return ProductRepository.findByRating();
+    }
+
+    @PutMapping("/product/updateRating")
+    @ResponseBody
+    public void updateUserCartItems(@RequestBody Product product) {
+        int id = product.getId();
+        double rating = product.getRating();
+        Product newProduct = ProductRepository.findById(id);
+        newProduct.setRating(rating);
+        ProductRepository.save(newProduct);
+    }
+
     @GetMapping("/similarProducts/{type}/{id}")
     public List<Product> fetchSimilarProducts(@PathVariable String type, @PathVariable int id) {
         return ProductRepository.findByType(type, id);

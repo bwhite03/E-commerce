@@ -1,12 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { useParams } from "react-router-dom";
-import {
-  fetchProduct,
-  fetchProductImages,
-  fetchReviews,
-} from "../../store/actions/productActions";
-import { addToCart, removeCartItem } from "../../store/actions/userActions";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
@@ -21,25 +14,40 @@ import ListAltOutlinedIcon from "@mui/icons-material/ListAltOutlined";
 import "./product.styles.css";
 
 function Product(props: any) {
-  const [image, setImage] = React.useState("");
-  let { id } = useParams();
-  useEffect(() => {
-    props.fetchProduct(id);
-    props.fetchProductImages(id);
-    props.fetchReviews(id);
-  }, [id]);
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+  const [image, setImage] = useState("");
 
   const handleAddToCart = (event: any) => {
-    const cartItem = {
-      userId: props.userInfo.id,
-      productId: props.product.id,
-    };
-
-    props.addToCart(cartItem, props.product);
+    if (token) {
+      const cartItem = {
+        userId: props.userInfo.id,
+        productId: props.product.id,
+      };
+      props.addToCart(cartItem, props.product);
+    } else {
+      props.addToCart(undefined, props.product);
+    }
   };
 
   const handleRemoveCartItem = (event: any) => {
     props.removeCartItem(props.product.id);
+  };
+
+  const handleAddToWishList = (event: any) => {
+    if (!token) {
+      navigate("/signin");
+    } else {
+      const wishListItem = {
+        userId: props.userInfo.id,
+        productId: props.product.id,
+      };
+      props.addToWishList(wishListItem, props.product);
+    }
+  };
+
+  const handleRemoveWishListItem = (event: any) => {
+    props.removeWishListItem(props.product.id);
   };
 
   const handleChangeImage = (imageUrl: any) => {
@@ -54,6 +62,7 @@ function Product(props: any) {
       <Stack>
         {props.productImages.map((image: any) => (
           <img
+            key={image.id}
             src={image.image}
             style={{
               width: "100px",
@@ -97,7 +106,7 @@ function Product(props: any) {
         <Box sx={{ display: "flex" }}>
           <Rating name="read-only" value={4} readOnly />
           <Typography variant="subtitle1" component="div" gutterBottom>
-            (4.0) 5 reviews
+            ({props.product.rating}) {props.productReviews.length} reviews
           </Typography>
         </Box>
         <Typography variant="h4" component="div" gutterBottom>
@@ -176,8 +185,26 @@ function Product(props: any) {
               paddingTop: "20px",
             }}
           >
-            <ListAltOutlinedIcon />
-            <span style={{ paddingLeft: "10px" }}>Add to list</span>
+            {props.wishList.some((e: any) => e.id === props.product.id) ? (
+              <Button
+                variant="outlined"
+                color="error"
+                size="small"
+                startIcon={<ListAltOutlinedIcon />}
+                onClick={handleRemoveWishListItem}
+              >
+                Remove from wish list
+              </Button>
+            ) : (
+              <Button
+                variant="outlined"
+                startIcon={<ListAltOutlinedIcon />}
+                size="small"
+                onClick={handleAddToWishList}
+              >
+                Add to list
+              </Button>
+            )}
           </div>
         </Box>
       </Paper>
@@ -185,19 +212,4 @@ function Product(props: any) {
   );
 }
 
-const mapStateToProps = (state: any) => {
-  return {
-    product: state.productReducer.product,
-    productImages: state.productReducer.productImages,
-    userInfo: state.userReducer.userInfo,
-    cart: state.userReducer.cart,
-  };
-};
-
-export default connect(mapStateToProps, {
-  fetchProduct,
-  addToCart,
-  removeCartItem,
-  fetchProductImages,
-  fetchReviews,
-})(Product);
+export default Product;

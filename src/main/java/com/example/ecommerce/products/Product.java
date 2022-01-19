@@ -16,7 +16,7 @@ public class Product {
     private String type;
     private String brand;
     private String details;
-
+    private Double rating;
 
 
     public Integer getId() {
@@ -73,6 +73,14 @@ public class Product {
 
     public void setDetails(String details) {
         this.details = details;
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
     }
 }
 

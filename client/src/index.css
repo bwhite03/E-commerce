@@ -16,3 +16,7 @@ a {
   color: white;
   text-decoration: none;
 }
+
+.MuiPagination-ul {
+  justify-content: center;
+}

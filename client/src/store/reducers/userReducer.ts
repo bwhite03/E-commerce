@@ -6,10 +6,20 @@ import {
   FETCH_CART_ITEMS,
   REMOVE_CART_ITEM,
   UPDATE_CART_ITEM_QUANTITY,
+  ADD_TO_WISH_LIST,
+  REMOVE_WISH_LIST_ITEM,
+  FETCH_WISH_LIST_ITEMS,
+  ADD_TO_ORDERS,
+  FETCH_ORDERS,
+  FETCH_ORDER,
+  REMOVE_ALL_CART_ITEMS,
 } from "../actions/userActions";
 const userDefaultState = {
   userInfo: undefined,
   cart: [],
+  wishList: [],
+  orders: [],
+  order: [],
 };
 
 const userReducer = (state = userDefaultState, action: any) => {
@@ -17,7 +27,7 @@ const userReducer = (state = userDefaultState, action: any) => {
     case FETCH_USER_INFO:
       return { ...state, userInfo: action.payload };
     case LOGOUT:
-      return { ...state, userInfo: action.payload, cart: [] };
+      return { ...state, userInfo: undefined, cart: [], orders: [] };
     case FETCH_CART_ITEMS:
       return { ...state, cart: action.payload };
     case ADD_TO_CART:
@@ -36,6 +46,25 @@ const userReducer = (state = userDefaultState, action: any) => {
             : item
         ),
       };
+    case FETCH_WISH_LIST_ITEMS:
+      return { ...state, wishList: action.payload };
+    case ADD_TO_WISH_LIST:
+      return { ...state, wishList: [...state.wishList, action.payload] };
+    case REMOVE_WISH_LIST_ITEM:
+      return {
+        ...state,
+        wishList: state.wishList.filter(
+          (item: any) => item.id !== action.payload
+        ),
+      };
+    case ADD_TO_ORDERS:
+      return { ...state, orders: [...state.orders, action.payload] };
+    case FETCH_ORDERS:
+      return { ...state, orders: action.payload };
+    case FETCH_ORDER:
+      return { ...state, order: action.payload };
+    case REMOVE_ALL_CART_ITEMS:
+      return { ...state, cart: [] };
     default:
       return state;
   }

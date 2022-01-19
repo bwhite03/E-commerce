@@ -6,7 +6,6 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { connect } from "react-redux";
 
 function ProductReviews(props: any) {
   return (
@@ -66,7 +65,7 @@ function ProductReviews(props: any) {
       </div>
       <Grid container spacing={2} sx={{ pt: 2 }}>
         {props.productReviews.slice(0, 3).map((review: any) => (
-          <Grid item xs={4}>
+          <Grid item xs={4} key={review.id}>
             <Card>
               <CardContent>
                 <div
@@ -100,20 +99,4 @@ function ProductReviews(props: any) {
   );
 }
 
-const mapStateToProps = (state: any) => {
-  let totalRating = state.productReducer.productReviews.reduce(
-    (acc: any, obj: any) => acc + obj.rating,
-    0
-  );
-  totalRating = (
-    totalRating / state.productReducer.productReviews.length
-  ).toFixed(1);
-
-  return {
-    productReviews: state.productReducer.productReviews,
-    totalRating: totalRating,
-    product: state.productReducer.product,
-  };
-};
-
-export default connect(mapStateToProps)(ProductReviews);
+export default ProductReviews;

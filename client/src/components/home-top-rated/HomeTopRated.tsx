@@ -1,20 +1,13 @@
-import { useEffect } from "react";
+import React from "react";
 import Typography from "@mui/material/Typography";
+import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Rating from "@mui/material/Rating";
 import Slider from "react-slick";
 import Paper from "@mui/material/Paper";
-import { Link } from "react-router-dom";
-import "./similar-products.styles.css";
 
-function SimilarProducts(props: any) {
+function HomeTopRated(props: any) {
   const token = localStorage.getItem("token");
-
-  useEffect(() => {
-    if (props.product.length !== 0) {
-      props.fetchSimilarProducts(props.product.type, props.product.id);
-    }
-  }, [props.product]);
 
   const settings = {
     dots: true,
@@ -29,26 +22,27 @@ function SimilarProducts(props: any) {
     if (token) {
       const cartItem = {
         userId: props.userInfo.id,
-        productId: props.product.id,
+        productId: product.id,
       };
-      props.addToCart(cartItem, props.product);
+      props.addToCart(cartItem, product);
     } else {
-      props.addToCart(undefined, props.product);
+      props.addToCart(undefined, product);
     }
   };
 
   const handleRemoveCartItem = (event: any, product: any) => {
     event.preventDefault();
+    console.log(props);
     props.removeCartItem(product.id);
   };
 
   return (
     <div style={{ paddingTop: "20px" }}>
-      <Typography variant="h6" component="div" gutterBottom>
-        Similar items you might like
+      <Typography variant="h4" component="div" gutterBottom>
+        Top Rated
       </Typography>
       <Slider {...settings}>
-        {props.similarProducts.map((product: any) => (
+        {props.topRatedProducts.map((product: any) => (
           <Link to={`/product/${product.id}`} key={product.id}>
             <Paper elevation={0}>
               <div style={{ padding: "10px" }}>
@@ -96,7 +90,7 @@ function SimilarProducts(props: any) {
                 >
                   {product.model}
                 </Typography>
-                <Rating name="read-only" value={4} readOnly />
+                <Rating name="read-only" value={product.rating} readOnly />
               </div>
             </Paper>
           </Link>
@@ -106,4 +100,4 @@ function SimilarProducts(props: any) {
   );
 }
 
-export default SimilarProducts;
+export default HomeTopRated;

@@ -8,15 +8,20 @@ import { connect } from "react-redux";
 import { addToCart, removeCartItem } from "../../store/actions/userActions";
 
 function ProductListItem(props: any) {
+  const token = localStorage.getItem("token");
+
   const handleAddToCart = (event: any) => {
     event.preventDefault();
 
-    const cartItem = {
-      userId: props.userInfo.id,
-      productId: props.product.id,
-    };
-
-    props.addToCart(cartItem, props.product);
+    if (token) {
+      const cartItem = {
+        userId: props.userInfo.id,
+        productId: props.product.id,
+      };
+      props.addToCart(cartItem, props.product);
+    } else {
+      props.addToCart(undefined, props.product);
+    }
   };
 
   const handleRemoveCartItem = (event: any) => {
@@ -57,7 +62,7 @@ function ProductListItem(props: any) {
         >
           {props.product.model}
         </Typography>
-        <Rating name="read-only" value={4} readOnly />
+        <Rating name="read-only" value={props.product.rating} readOnly />
       </Paper>
     </Link>
   );

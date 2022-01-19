@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
 import Typography from "@mui/material/Typography";
@@ -119,9 +120,19 @@ function Cart(props: any) {
                 ${props.estimatedTotal}
               </Typography>
             </div>
-            <Button variant="contained" sx={{ width: "100%" }}>
-              Continue to checkout
-            </Button>
+            {props.userInfo !== undefined ? (
+              <Link to={`/checkout`} onClick={props.onClose}>
+                <Button variant="contained" sx={{ width: "100%" }}>
+                  Continue to checkout
+                </Button>
+              </Link>
+            ) : (
+              <Link to={`/signin`} onClick={props.onClose}>
+                <Button variant="contained" sx={{ width: "100%" }}>
+                  Continue to checkout
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       )}
@@ -133,10 +144,11 @@ const mapStateToProps = (state: any) => {
   let subTotal = 0;
   let estimatedTotal = 0;
   state.userReducer.cart.map((item: any) => {
-    subTotal += item.price * item.quantity;
+    return (subTotal += item.price * item.quantity);
   });
   estimatedTotal = subTotal + subTotal * 0.06;
   return {
+    userInfo: state.userReducer.userInfo,
     cart: state.userReducer.cart,
     subTotal: subTotal,
     estimatedTotal: estimatedTotal,

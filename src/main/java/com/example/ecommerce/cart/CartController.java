@@ -35,4 +35,13 @@ public class CartController {
         newItem.setQuantity(cartItem.getQuantity());
         CartRepository.save(newItem);
     }
+
+    @DeleteMapping("/removeAllCartItems/{id}")
+    public void removeAllUserCartItems(@PathVariable int id) {
+        List<Cart> cartItem = CartRepository.findByUserId(id);
+
+        for (Cart cart : cartItem){
+            CartRepository.delete(cart);
+        }
+    }
 }

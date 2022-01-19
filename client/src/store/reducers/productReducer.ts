@@ -6,6 +6,7 @@ import {
   FETCH_SIMILAR_PRODUCTS,
   FETCH_REVIEWS,
   ADD_REVIEW,
+  FETCH_TOP_RATED,
 } from "../actions/productActions";
 
 const userDefaultState = {
@@ -14,6 +15,7 @@ const userDefaultState = {
   productReviews: [],
   productImages: [],
   similarProducts: [],
+  topRatedProducts: [],
 };
 
 const productReducer = (state = userDefaultState, action: any) => {
@@ -24,6 +26,8 @@ const productReducer = (state = userDefaultState, action: any) => {
       return { ...state, product: action.payload };
     case FETCH_REVIEWS:
       return { ...state, productReviews: action.payload };
+    case FETCH_TOP_RATED:
+      return { ...state, topRatedProducts: action.payload };
     case FETCH_PRODUCT_IMAGES:
       return { ...state, productImages: action.payload };
     case FILTER_PRODUCTS:

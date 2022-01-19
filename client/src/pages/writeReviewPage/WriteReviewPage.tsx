@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import { useParams, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchProduct, addReview } from "../../store/actions/productActions";
+import {
+  fetchProduct,
+  addReview,
+  updateProductRating,
+  fetchReviews,
+} from "../../store/actions/productActions";
 import Paper from "@mui/material/Paper";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
@@ -19,10 +24,18 @@ function WriteReviewPage(props: any) {
   let { id } = useParams();
 
   useEffect(() => {
+    props.fetchReviews(id);
     props.fetchProduct(id);
   }, [id]);
 
   const handleAddReview = () => {
+    let totalRating = props.productReviews.reduce(
+      (acc: any, obj: any) => acc + obj.rating,
+      0
+    );
+    totalRating = (totalRating + rating) / props.productReviews.length;
+    totalRating = Math.round(totalRating * 1e2) / 1e2;
+
     const date = new Date();
     date.toISOString().slice(0, 10);
     const review = {
@@ -33,8 +46,8 @@ function WriteReviewPage(props: any) {
       content: content,
       title: title,
     };
-
     props.addReview(review);
+    props.updateProductRating(totalRating, 1);
     navigate(`/product/${id}`);
   };
 
@@ -124,9 +137,13 @@ function WriteReviewPage(props: any) {
 const mapStateToProps = (state: any) => {
   return {
     product: state.productReducer.product,
+    productReviews: state.productReducer.productReviews,
   };
 };
 
-export default connect(mapStateToProps, { fetchProduct, addReview })(
-  WriteReviewPage
-);
+export default connect(mapStateToProps, {
+  fetchProduct,
+  addReview,
+  fetchReviews,
+  updateProductRating,
+})(WriteReviewPage);

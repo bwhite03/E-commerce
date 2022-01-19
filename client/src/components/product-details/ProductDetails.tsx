@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import Typography from "@mui/material/Typography";
 
 function ProductDetails(props: any) {
@@ -15,10 +14,4 @@ function ProductDetails(props: any) {
   );
 }
 
-const mapStateToProps = (state: any) => {
-  return {
-    product: state.productReducer.product,
-  };
-};
-
-export default connect(mapStateToProps, {})(ProductDetails);
+export default ProductDetails;

@@ -6,6 +6,8 @@ export const FETCH_PRODUCT_IMAGES = "FETCH_PRODUCT_IMAGES";
 export const FETCH_SIMILAR_PRODUCTS = "FETCH_SIMILAR_PRODUCTS";
 export const FETCH_REVIEWS = "FETCH_REVIEWS";
 export const ADD_REVIEW = "ADD_REVIEW";
+export const FETCH_TOP_RATED = "FETCH_TOP_RATED";
+export const UPDATE_PRODUCT_RATING = "UPDATE_PRODUCT_RATING";
 
 export const fetchProducts = (page: number) => {
   return async (dispatch: any) => {
@@ -47,6 +49,16 @@ export const fetchSimilarProducts = (type: string, id: number) => {
   };
 };
 
+export const fetchTopRated = () => {
+  return async (dispatch: any) => {
+    const response = await axios.get("product/topRated");
+    dispatch({
+      type: FETCH_TOP_RATED,
+      payload: response.data,
+    });
+  };
+};
+
 export const fetchProductImages = (id: number) => {
   return async (dispatch: any) => {
     const response = await axios.get(`/productImages/${id}`);
@@ -66,6 +78,19 @@ export const filterProducts = (type: string, brand: string, price: string) => {
       type: FILTER_PRODUCTS,
       payload: response.data,
     });
+  };
+};
+
+export const updateProductRating = (rating: any, id: any) => {
+  return async (dispatch: any) => {
+    const response = await axios.put(`/product/updateRating`, {
+      rating: rating,
+      id: id,
+    });
+    // dispatch({
+    //   type: UPDATE_PRODUCT_RATING,
+    //   payload: response.data,
+    // });
   };
 };
 
