@@ -18,11 +18,11 @@ function WishListPage(props: any) {
     if (token) {
       const cartItem = {
         userId: props.userInfo.id,
-        productId: props.product.id,
+        productId: product.id,
       };
-      props.addToCart(cartItem, props.product);
+      props.addToCart(cartItem, product);
     } else {
-      props.addToCart(undefined, props.product);
+      props.addToCart(undefined, product);
     }
   };
 

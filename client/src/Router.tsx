@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/homePage/HomePage";
 import ProductsPage from "./pages/productsPage/ProductsPage";
 import ProductPage from "./pages/productPage/ProductPage";
@@ -19,7 +19,7 @@ import "./App.css";
 
 function Router() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Nav />
       <Container maxWidth="lg">
         <Routes>
@@ -41,7 +41,7 @@ function Router() {
         </Routes>
       </Container>
       {/* <Footer /> */}
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

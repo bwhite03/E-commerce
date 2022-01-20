@@ -1,7 +1,8 @@
-.css-twia2z-MuiPaper-root-MuiDialog-paper {
+.MuiPaper-root {
   margin: 0 !important;
 }
-.css-hz1bth-MuiDialog-container {
+
+.MuiDialog-container {
   justify-content: flex-end !important;
 }
 
