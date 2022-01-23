@@ -65,7 +65,7 @@ function ProductReviews(props: any) {
       </div>
       <Grid container spacing={2} sx={{ pt: 2 }}>
         {props.productReviews.slice(0, 3).map((review: any) => (
-          <Grid item xs={4} key={review.id}>
+          <Grid item xs={12} sm={6} md={4} key={review.id}>
             <Card>
               <CardContent>
                 <div

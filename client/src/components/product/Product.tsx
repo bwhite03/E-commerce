@@ -59,7 +59,7 @@ function Product(props: any) {
       className="product-container"
       sx={{ minWidth: 120, display: "flex", paddingTop: "50px" }}
     >
-      <Stack>
+      <Stack className="product-images-container">
         {props.productImages.map((image: any) => (
           <img
             key={image.id}
@@ -81,12 +81,14 @@ function Product(props: any) {
       >
         {image === "" ? (
           <img
+            className="product-img"
             src={props.product.image}
             alt="product"
             style={{ width: "500px", height: "500px" }}
           />
         ) : (
           <img
+            className="product-img"
             src={image}
             alt="product"
             style={{ width: "500px", height: "500px" }}

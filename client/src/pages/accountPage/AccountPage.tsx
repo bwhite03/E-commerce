@@ -12,9 +12,12 @@ import ListAltOutlinedIcon from "@mui/icons-material/ListAltOutlined";
 
 function AccountPage(props: any) {
   return (
-    <div style={{ display: "flex" }}>
+    <div className="account-container" style={{ display: "flex" }}>
       <AccountNav />
-      <div style={{ marginTop: "20px", width: "75%", paddingLeft: "25px" }}>
+      <div
+        className="account"
+        style={{ marginTop: "20px", width: "75%", paddingLeft: "25px" }}
+      >
         <Typography variant="h5" component="div">
           Welcome to your Account
         </Typography>
@@ -40,7 +43,7 @@ function AccountPage(props: any) {
           <ArrowForwardIosOutlinedIcon />
         </Link>
         <Link
-          to="/signin"
+          to="/account"
           style={{
             padding: "20px",
             marginTop: "20px",
@@ -82,9 +85,7 @@ function AccountPage(props: any) {
           <Typography variant="h5" component="div">
             Address
           </Typography>
-          <Typography variant="body1" component="div">
-            450 Selma st, Cadillac, MI 49601
-          </Typography>
+          <Typography variant="body1" component="div"></Typography>
         </Paper>
         <Link
           to="/account/wish-list"

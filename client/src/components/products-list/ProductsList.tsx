@@ -26,7 +26,7 @@ function ProductsList(props: any) {
       ) : (
         <Grid container spacing={2} sx={{ p: 2 }}>
           {props.products.content.map((product: any) => (
-            <Grid item xs={3} key={product.id} sx={{ p: 2 }}>
+            <Grid item xs={6} md={3} key={product.id} sx={{ p: 2 }}>
               <ProductListItem product={product} key={product.id} />
             </Grid>
           ))}

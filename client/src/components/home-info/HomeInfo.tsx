@@ -12,12 +12,13 @@ function HomeInfo() {
   return (
     <div style={{ paddingTop: "15px" }}>
       <div
+        className="home-info-container"
         style={{
           display: "flex",
           justifyContent: "space-between",
         }}
       >
-        <Card sx={{ width: "49%" }}>
+        <Card id="home-info-card" sx={{ width: "49%" }}>
           <CardContent
             sx={{ display: "flex", alignItems: "center", paddingTop: "24px" }}
           >
@@ -34,7 +35,7 @@ function HomeInfo() {
             </div>
           </CardContent>
         </Card>
-        <Card sx={{ width: "49%" }}>
+        <Card id="home-info-card" sx={{ width: "49%" }}>
           <CardContent
             sx={{ display: "flex", alignItems: "center", paddingTop: "24px" }}
           >

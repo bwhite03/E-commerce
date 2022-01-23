@@ -15,6 +15,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 function AccountNav() {
   return (
     <List
+      className="account-nav-container"
       sx={{
         marginTop: "20px",
         width: "25%",

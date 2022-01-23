@@ -8,9 +8,12 @@ import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutl
 
 function PurchaseHistoryPage(props: any) {
   return (
-    <div style={{ display: "flex" }}>
+    <div className="account-container" style={{ display: "flex" }}>
       <AccountNav />
-      <div style={{ marginTop: "20px", width: "75%", paddingLeft: "25px" }}>
+      <div
+        className="account"
+        style={{ marginTop: "20px", width: "75%", paddingLeft: "25px" }}
+      >
         <Typography variant="h5" component="div">
           Purchase History
         </Typography>

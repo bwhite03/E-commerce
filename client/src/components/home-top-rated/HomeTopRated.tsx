@@ -15,6 +15,52 @@ function HomeTopRated(props: any) {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1300,
+        settings: {
+          arrows: false,
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 850,
+        settings: {
+          arrows: false,
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 650,
+        settings: {
+          arrows: false,
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          arrows: false,
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   const handleAddToCart = (event: any, product: any) => {
@@ -45,9 +91,10 @@ function HomeTopRated(props: any) {
         {props.topRatedProducts.map((product: any) => (
           <Link to={`/product/${product.id}`} key={product.id}>
             <Paper elevation={0}>
-              <div style={{ padding: "10px" }}>
+              <div className="top-rated-slide" style={{ padding: "10px" }}>
                 <div>
                   <img
+                    className="top-rated-slide-img"
                     src={product.image}
                     style={{ width: "200px", height: "200px" }}
                   />

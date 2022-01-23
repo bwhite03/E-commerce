@@ -13,8 +13,15 @@ function HomeShop() {
       <Typography variant="h4" component="div" sx={{ paddingBottom: "10px" }}>
         Shop
       </Typography>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <Link to="/products" style={{ color: "#000000DE", width: "32%" }}>
+      <div
+        className="shop-container"
+        style={{ display: "flex", justifyContent: "space-between" }}
+      >
+        <Link
+          className="shop-card"
+          to="/products"
+          style={{ color: "#000000DE", width: "32%" }}
+        >
           <Card>
             <CardMedia
               component="img"
@@ -34,7 +41,11 @@ function HomeShop() {
             </CardActions>
           </Card>
         </Link>
-        <Link to="/products" style={{ color: "#000000DE", width: "32%" }}>
+        <Link
+          className="shop-card"
+          to="/products"
+          style={{ color: "#000000DE", width: "32%" }}
+        >
           <Card>
             <CardMedia
               component="img"
@@ -54,7 +65,11 @@ function HomeShop() {
             </CardActions>
           </Card>
         </Link>
-        <Link to="/products" style={{ color: "#000000DE", width: "32%" }}>
+        <Link
+          className="shop-card"
+          to="/products"
+          style={{ color: "#000000DE", width: "32%" }}
+        >
           <Card>
             <CardMedia
               component="img"

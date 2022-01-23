@@ -60,13 +60,13 @@ function CartItem(props: any) {
           >
             Remove
           </Link>
-          <Link
+          {/* <Link
             color="inherit"
             underline="always"
             sx={{ padding: "5px", cursor: "pointer" }}
           >
             Save for later
-          </Link>
+          </Link> */}
         </div>
         <TextField
           sx={{ width: "100px" }}

@@ -22,6 +22,38 @@ function SimilarProducts(props: any) {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 850,
+        settings: {
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 650,
+        settings: {
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   const handleAddToCart = (event: any, product: any) => {
@@ -51,7 +83,7 @@ function SimilarProducts(props: any) {
         {props.similarProducts.map((product: any) => (
           <Link to={`/product/${product.id}`} key={product.id}>
             <Paper elevation={0}>
-              <div style={{ padding: "10px" }}>
+              <div className="similar-items-slide" style={{ padding: "10px" }}>
                 <div>
                   <img
                     src={product.image}

@@ -59,7 +59,7 @@ function AllReviewsPage(props: any) {
       </div>
       <Grid container spacing={2} sx={{ pt: 2 }}>
         {props.productReviews.map((review: any) => (
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6} md={4} key={review.id}>
             <Card>
               <CardContent>
                 <div

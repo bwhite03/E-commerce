@@ -53,6 +53,7 @@ function WriteReviewPage(props: any) {
 
   return (
     <div
+      className="write-review-container"
       style={{
         textAlign: "center",
         paddingTop: "25px",

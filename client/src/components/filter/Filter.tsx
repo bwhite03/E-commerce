@@ -35,10 +35,18 @@ function Filter(props: any) {
       <Typography variant="h6" component="div" gutterBottom sx={{ m: 1 }}>
         Products ({props.products.totalElements})
       </Typography>
-      <div style={{ display: "flex", alignItems: "end" }}>
-        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+      <div
+        className="filter-container"
+        style={{ display: "flex", alignItems: "end" }}
+      >
+        <FormControl
+          className="filter-select"
+          variant="standard"
+          sx={{ m: 1, minWidth: 120 }}
+        >
           <InputLabel id="demo-simple-select-label">Type</InputLabel>
           <Select
+            className="filter-select"
             labelId="demo-simple-select-label"
             style={{ width: "150px" }}
             id="demo-simple-select"
@@ -54,9 +62,14 @@ function Filter(props: any) {
             <MenuItem value={"Acoustic-Electric"}>Acoustic-Electric</MenuItem>
           </Select>
         </FormControl>
-        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+        <FormControl
+          className="filter-select"
+          variant="standard"
+          sx={{ m: 1, minWidth: 120 }}
+        >
           <InputLabel id="demo-simple-select-label">Brand</InputLabel>
           <Select
+            className="filter-select"
             labelId="demo-simple-select-label"
             style={{ width: "150px" }}
             id="demo-simple-select"
@@ -77,9 +90,14 @@ function Filter(props: any) {
             <MenuItem value={"D'Angelico"}>D'Angelico</MenuItem>
           </Select>
         </FormControl>
-        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+        <FormControl
+          className="filter-select"
+          variant="standard"
+          sx={{ m: 1, minWidth: 120 }}
+        >
           <InputLabel id="demo-simple-select-label">Price</InputLabel>
           <Select
+            className="filter-select"
             labelId="demo-simple-select-label"
             style={{ width: "150px" }}
             id="demo-simple-select"
@@ -95,7 +113,11 @@ function Filter(props: any) {
             <MenuItem value={"300"}>$300-</MenuItem>
           </Select>
         </FormControl>
-        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+        <FormControl
+          className="filter-select"
+          variant="standard"
+          sx={{ m: 1, minWidth: 120 }}
+        >
           <Button variant="contained" onClick={handleSearch}>
             Search
           </Button>

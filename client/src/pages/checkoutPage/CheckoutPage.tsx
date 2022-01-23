@@ -46,6 +46,7 @@ function CheckoutPage(props: any) {
 
   return (
     <div
+      className="check-out-container"
       style={{
         display: "flex",
         marginTop: "20px",
@@ -53,6 +54,7 @@ function CheckoutPage(props: any) {
       }}
     >
       <div
+        className="checkout-col"
         style={{
           width: "65%",
           padding: "15px",
@@ -70,7 +72,10 @@ function CheckoutPage(props: any) {
           ))}
         </div>
       </div>
-      <Paper style={{ width: "35%", padding: "15px", height: "350px" }}>
+      <Paper
+        className="checkout-col"
+        style={{ width: "35%", padding: "15px", height: "350px" }}
+      >
         <Button
           variant="contained"
           sx={{ width: "100%" }}
@@ -177,11 +182,11 @@ function CheckoutPage(props: any) {
 const mapStateToProps = (state: any) => {
   let subTotal = 0;
   let estimatedTotal = 0;
-  let estimatedTaxes = 0;
+  let estimatedTaxes: string | number = 0;
   state.userReducer.cart.map((item: any) => {
     subTotal += item.price * item.quantity;
   });
-  estimatedTaxes = subTotal * 0.06;
+  estimatedTaxes = (subTotal * 0.06).toFixed(2);
   estimatedTotal = subTotal + subTotal * 0.06;
   return {
     userInfo: state.userReducer.userInfo,
