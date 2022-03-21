@@ -184,7 +184,7 @@ const mapStateToProps = (state: any) => {
   let estimatedTotal = 0;
   let estimatedTaxes: string | number = 0;
   state.userReducer.cart.map((item: any) => {
-    subTotal += item.price * item.quantity;
+    return (subTotal += item.price * item.quantity);
   });
   estimatedTaxes = (subTotal * 0.06).toFixed(2);
   estimatedTotal = subTotal + subTotal * 0.06;

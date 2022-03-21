@@ -12,11 +12,11 @@ import java.util.List;
 @RestController
 public class ProductImagesController {
     @Autowired
-    private ProductImagesRepository ProductImagesRepository;
+    private ProductImagesService productImagesService;
 
     @GetMapping("/productImages/{id}")
     public List<ProductImages> getProductImages(@PathVariable int id) {
-        return ProductImagesRepository.findByProductId(id);
+        return productImagesService.getProductImages(id);
     }
 
 }

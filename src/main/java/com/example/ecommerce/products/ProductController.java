@@ -7,54 +7,42 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.example.ecommerce.products.ProductSpecs.*;
-
 @CrossOrigin
 @RestController
 public class ProductController {
     @Autowired
-    private ProductRepository ProductRepository;
+    private ProductService productService;
 
     @GetMapping("/products")
     public Page<Product> allProducts(Pageable pageable) {
-        return ProductRepository.findAll(pageable);
+        return productService.getAllProducts(pageable);
     }
 
     @GetMapping("/product/{id}")
     public Product getProduct(@PathVariable int id) {
-        return ProductRepository.findById(id);
+        return productService.getProduct(id);
     }
 
     @GetMapping("/product/topRated")
     public List<Product> getTopRated() {
-        return ProductRepository.findByRating();
+        return productService.getTopRated();
     }
 
     @PutMapping("/product/updateRating")
     @ResponseBody
     public void updateUserCartItems(@RequestBody Product product) {
-        int id = product.getId();
-        double rating = product.getRating();
-        Product newProduct = ProductRepository.findById(id);
-        newProduct.setRating(rating);
-        ProductRepository.save(newProduct);
+        productService.updateUserCartItems(product);
     }
 
     @GetMapping("/similarProducts/{type}/{id}")
     public List<Product> fetchSimilarProducts(@PathVariable String type, @PathVariable int id) {
-        return ProductRepository.findByType(type, id);
+        return productService.fetchSimilarProducts(type, id);
     }
 
     @GetMapping("/products/filter")
     @ResponseBody
     public Page<Product> findAll(@RequestParam String type, @RequestParam String brand, @RequestParam String price, Pageable pageable) {
-
-        if (type.equals("") && brand.equals("") && price.equals("")) {
-            return ProductRepository.findAll(pageable);
-        } else {
-            return ProductRepository.findAll(hasProductType(type).and(hasProductBrand(brand)).and(hasProductPrice(price)), pageable);
-        }
-
+        return productService.findAll(type,brand,price,pageable);
     }
 
 }

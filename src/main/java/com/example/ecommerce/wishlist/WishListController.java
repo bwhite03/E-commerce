@@ -9,21 +9,20 @@ import java.util.List;
 @RestController
 public class WishListController {
     @Autowired
-    private WishListRepository WishListRepository;
+    private WishListService wishListService;
 
     @PostMapping("/addToWishList")
     public WishList createCartItem(@RequestBody WishList wishList) {
-        return WishListRepository.save(wishList);
+        return wishListService.createCartItem(wishList);
     }
 
     @DeleteMapping("/removeWishListItem/{id}")
     public void removeUserCartItems(@PathVariable int id) {
-        WishList wishListItem = WishListRepository.findByProductId(id);
-        WishListRepository.delete(wishListItem);
+        wishListService.removeUserCartItems(id);
     }
 
     @GetMapping("/fetchWishListItems")
     public List<WishListItem> getUserCartItems(@RequestParam int userId) {
-        return WishListRepository.findAll(userId);
+        return wishListService.getUserCartItems(userId);
     }
 }

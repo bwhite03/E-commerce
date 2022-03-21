@@ -9,23 +9,20 @@ import java.util.List;
 @RestController
 public class OrdersController {
     @Autowired
-    private OrdersRepository OrdersRepository;
+    private OrdersService ordersService;
 
     @PostMapping("/addToOrders")
     public void createCartItem(@RequestBody List<Orders> ordersItem) {
-
-        for (Orders order : ordersItem){
-            OrdersRepository.save(order);
-        }
+         ordersService.createCartItem(ordersItem);
     }
 
     @GetMapping("/fetchOrders")
     public List<Object[]> getOrders(@RequestParam int userId) {
-        return OrdersRepository.findByUserId(userId);
+        return ordersService.fetchOrders(userId);
     }
 
     @GetMapping("/fetchOrder/{id}")
     public List<Orders> getOrder(@PathVariable String id) {
-        return OrdersRepository.findByOrderId(id);
+        return ordersService.fetchOrdersById(id);
     }
 }

@@ -9,39 +9,31 @@ import java.util.List;
 @RestController
 public class CartController {
     @Autowired
-    private CartRepository CartRepository;
+    private CartService cartService;
 
     @PostMapping("/addToCart")
-    public Cart createCartItem(@RequestBody Cart cartItem) {
-
-        return CartRepository.save(cartItem);
+    public void createCartItem(@RequestBody Cart cartItem) {
+        cartService.addToCart(cartItem);
     }
 
     @DeleteMapping("/removeCartItem/{id}")
     public void removeUserCartItems(@PathVariable int id) {
-        Cart cartItem = CartRepository.findByProductId(id);
-        CartRepository.delete(cartItem);
+        cartService.removeUserCartItem(id);
     }
 
     @GetMapping("/fetchCartItems")
     public List<CartItem> getUserCartItems(@RequestParam int userId) {
-        return CartRepository.findAll(userId);
+        return cartService.findAll(userId);
     }
 
     @PutMapping("/updateCartItem")
     @ResponseBody
     public void updateUserCartItems(@RequestBody Cart cartItem) {
-        Cart newItem = CartRepository.findByProductId(cartItem.getId());
-        newItem.setQuantity(cartItem.getQuantity());
-        CartRepository.save(newItem);
+        cartService.updateUserCartItems(cartItem);
     }
 
     @DeleteMapping("/removeAllCartItems/{id}")
     public void removeAllUserCartItems(@PathVariable int id) {
-        List<Cart> cartItem = CartRepository.findByUserId(id);
-
-        for (Cart cart : cartItem){
-            CartRepository.delete(cart);
-        }
+        cartService.removeAllUserCartItems(id);
     }
 }
